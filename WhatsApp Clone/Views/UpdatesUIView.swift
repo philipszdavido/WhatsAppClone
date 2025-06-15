@@ -13,9 +13,17 @@ struct UpdatesUIView: View {
     
     var body: some View {
         NavigationView {
+            
             List {
-                StatusView()
+                Section {
+                    StatusView()
+                        .listRowInsets(EdgeInsets())
+                        .listRowSeparator(.hidden)
+                        .padding()
+                }
+                .listSectionSeparator(.hidden)
             }
+            .listStyle(PlainListStyle())
             .navigationTitle("Updates")
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -29,14 +37,15 @@ struct UpdatesUIView: View {
                 get: { searchText == "" ? "Search" : searchText},
                 set: {_ in searchText = "" }
             ))
-            .listStyle(PlainListStyle())
-            .listRowSeparator(.hidden)
-            .listSectionSeparator(.hidden)
+            
         }
     }
 }
 
 struct StatusView: View {
+    
+    private let names = ["Chidume", "Nnamdi", "Okeke"]
+    
     var body: some View {
         VStack {
             HStack {
@@ -46,14 +55,21 @@ struct StatusView: View {
                 Spacer()
                 
                 Circle()
-                    .fill(Color.gray)
-                    .frame(width: 10, height: 10)
+                    .frame(width: 30, height: 30)
                     .overlay {
                         Image(systemName: "camera.fill")
+                            .frame(width: 10, height: 10)
                             .foregroundStyle(.white)
                     }
-
-                Image(systemName: "pencil")
+                
+                Circle()
+                    .frame(width: 30, height: 30)
+                    .overlay {
+                        Image(systemName: "pencil")
+                            .frame(width: 10, height: 10)
+                            .foregroundStyle(.white)
+                    }
+                
             }.padding(.bottom, 10)
             
             ScrollView(.horizontal, showsIndicators: false) {
@@ -70,7 +86,7 @@ struct StatusView: View {
                                         .fill(Color.blue)
                                         .frame(width: 50, height: 50)
                                     Spacer()
-                                    Text("Nna")
+                                    Text(names.randomElement() ?? "Nna")
                                         .bold()
                                         .font(Font?.init(.system(size: 15, weight: .medium)))
                                 }
@@ -111,15 +127,17 @@ struct StatusView: View {
                                                 Text("+")
                                             }
                                     }
-                                    .position(x: 40, y: 40)
+                                    .position(x: 40, y: 45)
                             }
                     }
                     Spacer()
                     Text("Add Status")
                         .bold()
-                        .font(Font?.init(.system(size: 15, weight: .medium)))
-                }.padding(.horizontal, 5)
-                    .padding(.vertical, 10)
+                        .font(Font?.init(.system(size: 14, weight: .medium)))
+                }
+                .padding(.trailing, 45)
+                .padding(.vertical, 10)
+
             }
 
     }
@@ -127,6 +145,17 @@ struct StatusView: View {
 }
 
 struct ChannelsUIView: View {
+    
+    private let channelNames = ["General", "Announcements", "Work", "Real Madrid C.F."]
+    private let channelDescriptions: [String] = [
+        "This is the general channel for all questions and discussions.",
+        "Important announcements and updates go here.",
+        "Work-related tasks and projects should be discussed here.",
+        "Official match updates and highlights go here.",
+        "If you wanted to control the number of columns you can use .flexible() instead, which also lets you specify how big each item should be but now lets you control how many columns there are. For example, this creates five columns"
+    ]
+    private let numNotifs = [1, 2, 3, 4]
+    
     var body: some View {
         VStack {
             HStack {
@@ -144,29 +173,36 @@ struct ChannelsUIView: View {
                 }
             }
             
-            ForEach(0..<10) { _ in
-                HStack {
+            ForEach(0..<3) { _ in
+                HStack(alignment: .top) {
                     VStack {
                         Circle()
                             .frame(width: 40, height: 40)
+                            .padding(.trailing, 5)
                         Spacer()
                     }
                     
                     VStack(alignment: .leading) {
                         HStack {
-                            Text("General Swift Channel")
+                            Text(
+                                channelNames
+                                    .randomElement() ?? "General Swift Channel"
+                            )
                                 .font(Font?.init(.system(size: 14, weight: .medium)))
                             Spacer()
                             Text("3:12PM")
                                 .font(Font?.init(.system(size: 14, weight: .medium)))
                                 .foregroundColor(.gray)
                         }
-                        HStack {
-                            Text("If you wanted to control the number of columns you can use .flexible() instead, which also lets you specify how big each item should be but now lets you control how many columns there are. For example, this creates five columns")
+                        HStack(alignment: .top) {
+                            Text(
+                                channelDescriptions
+                                    .randomElement() ?? ""
+                            )
                                 .font(Font?.init(.system(size: 12, weight: .regular)))
                                 .foregroundColor(.gray)
                             Spacer()
-                            Text("1234")
+                            Text("\(numNotifs.randomElement() ?? 12)")
                                 .font(Font?.init(.system(size: 12, weight: .regular)))
                                 .foregroundColor(.white)
                                 .padding(4)
@@ -176,6 +212,57 @@ struct ChannelsUIView: View {
                     }
                     Spacer()
                 }
+            }
+            
+            channelsToFollowView
+                .padding(.top, 10)
+
+        }
+    }
+    
+    var channelsToFollowView: some View {
+        VStack {
+            HStack {
+                Text("Find channels to follow")
+                    .bold()
+                    .font(Font?.init(.system(size: 15, weight: .semibold)))
+                Spacer()
+            }
+            
+            ForEach (0..<3) { _ in
+                HStack {
+                    Circle()
+                        .frame(width: 40, height: 40)
+                        .padding(.trailing, 5)
+                    VStack(alignment: .leading) {
+                        Text(channelNames
+                            .randomElement() ?? "Real Madrid C.F.")
+                        Text("23M followers")
+                            .foregroundColor(.gray)
+                        Spacer()
+                    }
+                    Spacer()
+                    Button(action: { }) {
+                        Text("Follow")
+                            .padding(5)
+                            .padding(.horizontal, 15)
+                            .background(.green)
+                            .cornerRadius(50.0)
+                            .foregroundStyle(.white)
+                    }
+                }.padding(.bottom, 10)
+            }
+            
+            HStack {
+                Button(action: { }) {
+                    Text("Explore More")
+                        .padding(5)
+                        .padding(.horizontal, 20)
+                        .background(.green)
+                        .cornerRadius(50.0)
+                        .foregroundStyle(.white)
+                }
+                Spacer()
             }
         }
     }
