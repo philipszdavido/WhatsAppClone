@@ -42,7 +42,7 @@ struct SettingsUIView: View {
                     NavigationLink(destination: EmptyView()) {
                         
                         HStack {
-                            Image(systemName: "avatar")
+                            Image(systemName: "person.crop.rectangle.stack")
                             Text("Lists")
                         }
                         
@@ -51,7 +51,7 @@ struct SettingsUIView: View {
                     NavigationLink(destination: EmptyView()) {
                         
                         HStack {
-                            Image(systemName: "avatar")
+                            Image(systemName: "horn")
                             Text("Broadcast messages")
                         }
                         
@@ -59,7 +59,7 @@ struct SettingsUIView: View {
                     NavigationLink(destination: EmptyView()) {
                         
                         HStack {
-                            Image(systemName: "avatar")
+                            Image(systemName: "star")
                             Text("Starred")
                         }
                         
@@ -67,7 +67,7 @@ struct SettingsUIView: View {
                     NavigationLink(destination: EmptyView()) {
                         
                         HStack {
-                            Image(systemName: "avatar")
+                            Image(systemName: "laptopcomputer")
                             Text("Linked devices")
                         }
                         
@@ -80,7 +80,7 @@ struct SettingsUIView: View {
                     NavigationLink(destination: EmptyView()) {
                         
                         HStack {
-                            Image(systemName: "avatar")
+                            Image(systemName: "key")
                             Text("Account")
                         }
                         
@@ -89,7 +89,7 @@ struct SettingsUIView: View {
                     NavigationLink(destination: EmptyView()) {
                         
                         HStack {
-                            Image(systemName: "avatar")
+                            Image(systemName: "lock")
                             Text("Privacy")
                         }
                         
@@ -97,7 +97,7 @@ struct SettingsUIView: View {
                     NavigationLink(destination: EmptyView()) {
                         
                         HStack {
-                            Image(systemName: "avatar")
+                            Image(systemName: "message")
                             Text("Chats")
                         }
                         
@@ -105,7 +105,7 @@ struct SettingsUIView: View {
                     NavigationLink(destination: EmptyView()) {
                         
                         HStack {
-                            Image(systemName: "avatar")
+                            Image(systemName: "app.badge")
                             Text("Notifications")
                         }
                         
@@ -113,7 +113,7 @@ struct SettingsUIView: View {
                     NavigationLink(destination: EmptyView()) {
                         
                         HStack {
-                            Image(systemName: "avatar")
+                            Image(systemName: "arrow.up.arrow.down")
                             Text("Storage and data")
                         }
                         
@@ -126,7 +126,7 @@ struct SettingsUIView: View {
                     NavigationLink(destination: EmptyView()) {
                         
                         HStack {
-                            Image(systemName: "avatar")
+                            Image(systemName: "info.circle")
                             Text("Help")
                         }
                         
@@ -134,7 +134,7 @@ struct SettingsUIView: View {
                     NavigationLink(destination: EmptyView()) {
                         
                         HStack {
-                            Image(systemName: "avatar")
+                            Image(systemName: "person.2")
                             Text("Invite a friend")
                         }
                         
