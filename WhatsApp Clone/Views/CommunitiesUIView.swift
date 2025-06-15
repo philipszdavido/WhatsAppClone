@@ -10,9 +10,51 @@ import SwiftUI
 struct CommunitiesUIView: View {
     var body: some View {
         NavigationView {
+                        
             List {
                 Section {
                     
+                    HStack(alignment: .top) {
+                        Image(systemName: "lightbulb")
+                            .padding(.trailing, 10)
+                            .font(Font.system(size: 25))
+                        
+                        VStack(alignment: .leading) {
+                            Text("Communities")
+                                .font(
+                                    Font
+                                        .system(
+                                            size: 20,
+                                            weight: .bold,
+                                            design: .default
+                                        )
+                                )
+                            Text("View and create communities from the Chats tab, and organize them with a list. ")
+                                .font(
+                                    Font
+                                        .system(
+                                            size: 20,
+                                            weight: .regular,
+                                            design: .default
+                                        )
+                                ) + Text("Add communities list").foregroundStyle(
+                                    .green
+                                ).font(
+                                    Font
+                                        .system(
+                                            size: 20,
+                                            weight: .regular,
+                                            design: .default
+                                        )
+                                )
+                                .bold()
+                        }
+                    }
+                    .padding()
+                    .background(.gray)
+                    .cornerRadius(10.0)
+                    .foregroundStyle(.white)
+
                     ForEach (0..<2) { _ in
                         VStack {
                             HStack {
@@ -54,14 +96,15 @@ struct CommunitiesUIView: View {
             HStack {
                 Circle()
                     .frame(width: 40, height: 40)
+                    .padding(.trailing, 6)
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("CODING FC").bold()
+                        Text(randomCommunityChannelName).bold()
                         Spacer()
                         Text("05.05.25")
                     }
                     
-                    Text("Oluwatobiloba Nnamdi")
+                    Text(randomChannelPreviewText)
                 }
             }
         }
