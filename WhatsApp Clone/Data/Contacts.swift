@@ -18,3 +18,23 @@ let contacts = [
     "Nnamdi Chidi",
     "Kene"
 ]
+
+let randomContactName = contacts.randomElement() ?? "Unknown"
+
+
+let communityNames: [String] = [
+    "OLMPH PROFESSOIONAL COMMUNITY",
+    "Tech Enthusiasts",
+    "Book Lovers",
+    "Foodies",
+    "Travelers",
+    "Fashionistas",
+    "Sports Fanatics",
+    "Gaming Enthusiasts",
+    "Artists",
+    "Music Lovers"
+]
+
+var randomCommunityName: String {
+    return communityNames.randomElement() ?? "Unknown"
+}
