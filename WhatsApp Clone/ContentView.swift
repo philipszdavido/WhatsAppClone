@@ -10,49 +10,60 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @State private var selected: Int = 1
 
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+        TabView(selection: $selected) {
+            
+            UpdatesUIView()
+                .tabItem{
+                    VStack{
+                        Image(systemName: "message.and.waveform")
+                        Text("Updates")
                     }
                 }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                .tag(1)
+            
+            CallsUIView()
+                .tabItem{
+                    VStack{
+                        Image(systemName: "phone")
+                        Text("Calls")
                     }
                 }
-            }
-        } detail: {
-            Text("Select an item")
+                .tag(2)
+            
+            CommunitiesUIView()
+                .tabItem{
+                    VStack{
+                        Image(systemName: "person.3")
+                        Text("Communities")
+                    }
+                }
+                
+            
+            ChatsUIView()
+                .tabItem{
+                    VStack{
+                        Image(systemName: selected == 3 ? "message.fill" : "message")
+                        Text("Chats")
+                    }
+                }
+                .tag(3)
+            
+            SettingsUIView()
+                .tabItem{
+                    VStack{
+                        Image(systemName: "gear")
+                        Text("Settings")
+                    }
+                }
+                .tag(4)
+                    
+            
         }
     }
 
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
-        }
-    }
 }
 
 #Preview {
