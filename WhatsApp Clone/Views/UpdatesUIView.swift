@@ -55,11 +55,12 @@ struct StatusView: View {
                 Spacer()
                 
                 Circle()
+                    .fill(Color.primary)
                     .frame(width: 30, height: 30)
                     .overlay {
                         Image(systemName: "camera.fill")
                             .frame(width: 10, height: 10)
-                            .foregroundStyle(.white)
+                            .foregroundStyle(Color.primary)
                     }
                 
                 Circle()
@@ -187,11 +188,11 @@ struct ChannelsUIView: View {
                             Text(
                                 channelNames
                                     .randomElement() ?? "General Swift Channel"
-                            )
-                                .font(Font?.init(.system(size: 14, weight: .medium)))
+                            ).bold()
+                                //.font(Font?.init(.system(size: 14, weight: .medium)))
                             Spacer()
                             Text("3:12PM")
-                                .font(Font?.init(.system(size: 14, weight: .medium)))
+//                                .font(Font?.init(.system(size: 14, weight: .medium)))
                                 .foregroundColor(.gray)
                         }
                         HStack(alignment: .top) {
@@ -199,7 +200,7 @@ struct ChannelsUIView: View {
                                 channelDescriptions
                                     .randomElement() ?? ""
                             )
-                                .font(Font?.init(.system(size: 12, weight: .regular)))
+                                //.font(Font?.init(.system(size: 12, weight: .regular)))
                                 .foregroundColor(.gray)
                             Spacer()
                             Text("\(numNotifs.randomElement() ?? 12)")
